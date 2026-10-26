@@ -342,3 +342,10 @@ h1 span{color:#22d4ff}
 @media (prefers-reduced-motion:reduce){
   *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
 }
+/* Final robot perspective polish */
+.svg-head{transform:translateX(3px) rotate(-2.4deg)}
+.left-ear{transform-box:fill-box;transform-origin:center;transform:scale(.88) translateX(5px)}
+.right-ear{transform-box:fill-box;transform-origin:center;transform:scale(1.06) translateX(2px)}
+.robot-wrap:not(.tracking) #faceFeatures{transform:translateX(2px)}
+.robot-wrap:not(.tracking) #leftHandGroup{transform:rotate(-1.5deg)}
+.robot-wrap:not(.tracking) #rightHandGroup{transform:rotate(1.5deg)}
