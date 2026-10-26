@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#06182f" />
+  <title>Deskon Technology — Interactive Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero" id="hero">
+      <div class="aurora aurora-one"></div>
+      <div class="aurora aurora-two"></div>
+
+      <nav class="nav">
+        <a class="brand" href="#" aria-label="Deskon home">
+          <span class="brand-mark">D</span>
+          <span><strong>DESKON</strong><small>TECHNOLOGY</small></span>
+        </a>
+        <div class="nav-links">
+          <a class="active" href="#">Home</a><a href="#">About</a><a href="#">Services</a>
+          <a href="#">Our Work</a><a href="#">Insights</a><a href="#">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a class="primary small" href="#contact">Start a Project ↗</a>
+          <button class="menu" aria-label="Open menu">☰</button>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <div class="copy">
+          <p class="eyebrow"><span></span> TECHNOLOGY FOR A BRIGHTER TOMORROW</p>
+          <h1>We build<br><em>digital solutions</em><br>that move<br>businesses forward<span>.</span></h1>
+          <p class="sub">Web development, AI automation, mobile apps, cybersecurity and creative technology — all in one place.</p>
+          <div class="actions">
+            <a class="primary" href="#services">Explore our services ↗</a>
+            <button class="secondary"><span class="play">▶</span> Watch our story</button>
+          </div>
+          <div class="trust">
+            <p>TRUSTED BY BUSINESSES, BRANDS AND INNOVATORS</p>
+            <div class="logos"><span>◈ fintech</span><span>▥ growth</span><span>◇ nextgen</span><span>☁ cloudtech</span></div>
+          </div>
+        </div>
+
+        <div class="scene" id="scene" aria-label="Interactive AI robot working across digital services">
+          <svg class="network" viewBox="0 0 900 760" aria-hidden="true">
+            <defs>
+              <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <linearGradient id="wire" x1="0" x2="1"><stop stop-color="#04d7ff"/><stop offset="1" stop-color="#3079ff"/></linearGradient>
+            </defs>
+            <path class="wire w1" d="M75 280 C140 110,300 135,360 220 S600 170,805 88"/>
+            <path class="wire w2" d="M50 525 C210 620,370 540,430 475 S720 420,850 560"/>
+            <path class="wire w3" d="M275 80 C380 10,540 35,595 120 S720 270,860 230"/>
+            <g class="nodes"></g>
+          </svg>
+
+          <article class="panel code-panel float" data-depth="1.2">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <div class="service-label">WEB DEVELOPMENT</div>
+            <pre id="codeOutput"></pre><span class="caret"></span>
+          </article>
+
+          <article class="panel preview-panel float" data-depth="0.8">
+            <div class="mini-top"><span></span><b id="previewTitle">Live preview</b></div>
+            <div id="previewCanvas" class="preview-content"></div>
+          </article>
+
+          <article class="panel metric-panel float" data-depth="1">
+            <div class="mini-title"><span id="metricLabel">Performance</span><b id="metricValue">98%</b></div>
+            <div class="bars" id="bars"></div>
+            <svg class="spark" viewBox="0 0 220 70"><polyline id="sparkLine" points="0,55 35,42 70,48 105,28 140,36 175,15 220,22"/></svg>
+          </article>
+
+          <article class="phone float" data-depth="1.35">
+            <div class="speaker"></div>
+            <div class="phone-screen" id="phoneScreen"></div>
+            <div class="homebar"></div>
+          </article>
+
+          <div class="floating-icon icon-code float" data-depth="1.5">&lt;/&gt;</div>
+          <div class="floating-icon icon-bulb float" data-depth="1.1">✦</div>
+          <div class="floating-icon icon-cloud float" data-depth="1.3">☁</div>
+
+          <div class="robot-wrap" id="robot">
+            <div class="robot-shadow"></div>
+            <div class="robot-body">
+              <div class="neck"></div>
+              <div class="torso">
+                <div class="chest-logo">D</div>
+                <div class="shoulder left"></div>
+                <div class="shoulder right"></div>
+              </div>
+            </div>
+
+            <div class="robot-head" id="robotHead">
+              <div class="helmet">
+                <div class="ear left"></div><div class="ear right"></div>
+                <div class="visor">
+                  <div class="eye eye-left"><span></span></div>
+                  <div class="eye eye-right"><span></span></div>
+                  <div class="mouth"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="laptop">
+              <div class="laptop-screen"><span class="d-logo">D</span></div>
+              <div class="keyboard" id="keyboard">
+                <div class="key-row"></div><div class="key-row"></div><div class="key-row"></div>
+              </div>
+            </div>
+
+            <div class="arm arm-left" id="armLeft"><div class="upper"></div><div class="joint"></div><div class="fore"></div><div class="hand"><i></i><i></i><i></i><i></i></div></div>
+            <div class="arm arm-right" id="armRight"><div class="upper"></div><div class="joint"></div><div class="fore"></div><div class="hand"><i></i><i></i><i></i><i></i></div></div>
+          </div>
+
+          <div class="service-chip" id="serviceChip"><span></span><b id="serviceName">Web Development</b><small>Robot is building</small></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
