@@ -46,7 +46,7 @@
 }
 .code-live{
   position:absolute;
-  left:92px;
+  left:112px;
   top:101px;
   width:252px;
   height:181px;
@@ -75,7 +75,7 @@
 }
 .code-live .code-caret{
   position:absolute;
-  left:14px;
+  left:18px;
   top:34px;
   width:1.5px;
   height:10px;
