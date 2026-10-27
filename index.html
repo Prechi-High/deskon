@@ -74,14 +74,14 @@
 
 <div class='layout-editor' id='layoutEditor'>
   <button id='editorToggle' class='editor-main-btn'>Edit Hero Layout</button>
-  <div class='editor-panel' id='editorPanel'>
+  <div class='editor-panel' id='editorPanel'><div class='editor-drag-handle' id='editorDragHandle'>↕ Move editor</div>
     <div class='editor-row'>
       <label>Selected</label>
       <select id='editorTarget'>
         <option value='code'>Code screen</option>
         <option value='browser'>Result screen</option>
         <option value='analytics'>Analytics screen</option>
-        <option value='phone'>Phone screen</option>
+        <option value='phone'>Phone screen</option><option value='robot'>Robot</option>
       </select>
     </div>
     <div class='editor-row'>
@@ -89,7 +89,7 @@
       <input id='angleSlider' type='range' min='-45' max='45' step='.5' value='0'>
     </div>
     <div class='editor-row'>
-      <label>Tilt X <span id='tiltXValue'>0°</span></label>
+      <label>Pitch top ↕ bottom <span id='tiltXValue'>0°</span></label>
       <input id='tiltXSlider' type='range' min='-55' max='55' step='.5' value='0'>
     </div>
     <div class='editor-row'>
