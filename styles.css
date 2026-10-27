@@ -673,3 +673,19 @@
 .layout-editing.editor-moving .editor-panel{
   cursor:move;
 }
+
+.editor-drag-handle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.editor-drag-handle button{
+  border:1px solid #2b6d96;
+  background:#071a35;
+  color:#bdefff;
+  border-radius:6px;
+  padding:4px 7px;
+  font-size:10px;
+  cursor:pointer;
+}
