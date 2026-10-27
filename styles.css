@@ -162,16 +162,23 @@
 
 /* Web-development build GIF embedded into browser/result screen */
 .browser-live.web-gif{
-  left:60px;
-  top:74px;
-  width:234px;
-  height:132px;
+  /* The browser artwork is a square asset rendered with background-size:contain
+     inside a 326x246 box. The visible artwork is therefore 246x246 and centered,
+     leaving ~40px horizontal gutters. These coordinates map the GIF to the
+     actual inner glass canvas of that artwork. */
+  left:63px;
+  top:62px;
+  width:209px;
+  height:139px;
   border-radius:8px;
   overflow:hidden;
   background-image:var(--web-build-gif);
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
-  box-shadow:inset 0 0 0 1px rgba(55,186,255,.20);
+  transform-origin:top left;
+  transform:skewY(1.2deg) scaleY(.985);
+  clip-path:polygon(0 0,100% 8%,100% 92%,0 100%);
+  box-shadow:inset 0 0 0 1px rgba(55,186,255,.18);
 }
 .browser-live.web-gif > *{display:none!important}
