@@ -264,7 +264,13 @@
       const path=document.createElementNS('http://www.w3.org/2000/svg','path');
       path.setAttribute('class','editor-temp-line');
       const a=drawPoints[0],b=drawPoints[1];
-      path.setAttribute('d',`M${a.x.toFixed(1)} ${a.y.toFixed(1)} L${b.x.toFixed(1)} ${b.y.toFixed(1)}`);
+      const dx=b.x-a.x,dy=b.y-a.y;
+      const mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+      const len=Math.hypot(dx,dy)||1;
+      const bend=Math.min(90,Math.max(28,len*.18));
+      const cx=mx-(dy/len)*bend;
+      const cy=my+(dx/len)*bend;
+      path.setAttribute('d',`M${a.x.toFixed(1)} ${a.y.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`);
       network.appendChild(path);
     }
   }
