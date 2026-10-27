@@ -6,6 +6,7 @@
   const toggle=document.getElementById('editorToggle');
   const targetSelect=document.getElementById('editorTarget');
   const editorBox=document.getElementById('layoutEditor');
+  if(editorBox && editorBox.parentElement!==document.body) document.body.appendChild(editorBox);
   const editorDragHandle=document.getElementById('editorDragHandle');
   const resetEditorPos=document.getElementById('resetEditorPos');
   const angleSlider=document.getElementById('angleSlider');
@@ -110,7 +111,7 @@
 
   scene.addEventListener('pointerdown',e=>{
     if(!active||drawing)return;
-    if(e.target.closest?.('.layout-editor')||e.target.closest?.('.layout-output'))return;
+    if(e.target.closest?.('.layout-output'))return;
 
     const screen=e.target.closest?.('.floating-screen') || e.target.closest?.('.robot');
     if(!screen)return;
@@ -174,8 +175,8 @@
       editorBox.style.position='fixed';
       editorBox.style.right='auto';
       editorBox.style.bottom='auto';
-      editorBox.style.left=rect.left+'px';
-      editorBox.style.top=rect.top+'px';
+      editorBox.style.left=Math.max(8,rect.left)+'px';
+      editorBox.style.top=Math.max(8,rect.top)+'px';
       editorBox.setPointerCapture?.(e.pointerId);
       scene.classList.add('editor-moving');
     });
@@ -215,11 +216,11 @@
     resetEditorPos?.addEventListener('click',e=>{
       e.preventDefault();
       e.stopPropagation();
-      editorBox.style.position='absolute';
+      editorBox.style.position='fixed';
       editorBox.style.left='auto';
       editorBox.style.top='auto';
-      editorBox.style.right='10px';
-      editorBox.style.bottom='10px';
+      editorBox.style.right='16px';
+      editorBox.style.bottom='16px';
     });
   }
 
@@ -296,7 +297,7 @@
 
   scene.addEventListener('pointerdown',e=>{
     if(!active||!drawing)return;
-    if(e.target.closest?.('.layout-editor')||e.target.closest?.('.layout-output'))return;
+    if(e.target.closest?.('.layout-output'))return;
     e.preventDefault();e.stopPropagation();
 
     drawPoints.push(svgPoint(e));
