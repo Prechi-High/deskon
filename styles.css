@@ -750,61 +750,17 @@
 }
 
 
-/* Restore live code/preview visibility after rollback */
-.code-screen,
-.browser-screen{
-  overflow:visible;
-}
-.code-live{
-  display:block !important;
-  opacity:1 !important;
-  visibility:visible !important;
-  z-index:5;
-}
-.code-live pre,
-.code-live small,
-.code-live .code-caret{
-  display:block;
-  opacity:1;
-  visibility:visible;
-}
-.browser-live{
-  display:block !important;
-  opacity:1 !important;
-  visibility:visible !important;
-  z-index:5;
-  background-color:#07192f;
-}
-.browser-live .live-site{
-  display:block;
-}
-.browser-live.web-gif{
-  background-color:#07192f;
-}
-.browser-live.web-gif > .live-site{
-  display:block !important;
-  opacity:.28;
-  filter:saturate(.8) brightness(.7);
-}
-.browser-live.uiux-figma{
-  background-color:#07192f;
-}
-.browser-live.uiux-figma > .live-site{
-  display:block !important;
-  opacity:.18;
-  filter:saturate(.7) brightness(.55);
-}
 
-/* Make the live code readable even if the decorative screen artwork is missing */
+
+/* Remove added display-screen overlays/fallback panels */
 .code-screen::before,
-.browser-screen::before{
-  content:"";
-  position:absolute;
-  border-radius:18px;
-  background:linear-gradient(145deg,rgba(5,24,52,.96),rgba(8,53,103,.9));
-  border:1px solid rgba(53,190,255,.26);
-  box-shadow:inset 0 0 35px rgba(31,184,255,.08),0 18px 38px rgba(0,0,0,.28);
-  z-index:-1;
+.browser-screen::before,
+.analytics-screen::before,
+.phone-screen::before{
+  content:none !important;
+  display:none !important;
 }
-.code-screen::before{left:70px;top:70px;right:8px;bottom:8px}
-.browser-screen::before{left:44px;top:40px;right:10px;bottom:10px}
+.browser-live > .live-site{
+  opacity:1 !important;
+  filter:none !important;
+}
