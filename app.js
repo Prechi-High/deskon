@@ -5,6 +5,8 @@
   const scene=document.getElementById('scene');
   const toggle=document.getElementById('editorToggle');
   const targetSelect=document.getElementById('editorTarget');
+  const editorBox=document.getElementById('layoutEditor');
+  const editorDragHandle=document.getElementById('editorDragHandle');
   const angleSlider=document.getElementById('angleSlider');
   const tiltXSlider=document.getElementById('tiltXSlider');
   const tiltYSlider=document.getElementById('tiltYSlider');
@@ -27,7 +29,8 @@
     code:{el:scene.querySelector('.code-screen'),rotateZ:-5,tiltX:0,tiltY:7,perspective:1100},
     browser:{el:scene.querySelector('.browser-screen'),rotateZ:-7,tiltX:0,tiltY:-6,perspective:1100},
     analytics:{el:scene.querySelector('.analytics-screen'),rotateZ:4,tiltX:0,tiltY:-5,perspective:1000},
-    phone:{el:scene.querySelector('.phone-screen'),rotateZ:7,tiltX:0,tiltY:0,perspective:900}
+    phone:{el:scene.querySelector('.phone-screen'),rotateZ:7,tiltX:0,tiltY:0,perspective:900},
+    robot:{el:scene.querySelector('.robot'),rotateZ:0,tiltX:0,tiltY:0,perspective:1200,isRobot:true}
   };
 
   const initial={};
@@ -38,14 +41,19 @@
       top:parseFloat(cs.top)||0,
       rotateZ:c.rotateZ,
       tiltX:c.tiltX,
-      tiltY:c.tiltY
+      tiltY:c.tiltY,
+      transform:cs.transform
     };
   });
 
-  let active=false,selected='code',drag=null,drawing=false,drawPoints=[],customLines=[],originalsHidden=false;
+  let active=false,selected='code',drag=null,editorDrag=null,drawing=false,drawPoints=[],customLines=[],originalsHidden=false;
 
   function applyTransform(key){
     const c=configs[key];
+    if(c.isRobot){
+      c.el.style.setProperty('transform','none','important');
+      return;
+    }
     c.el.style.setProperty(
       'transform',
       `perspective(${c.perspective}px) rotateX(${c.tiltX}deg) rotateY(${c.tiltY}deg) rotateZ(${c.rotateZ}deg)`,
@@ -65,7 +73,10 @@
     angleValue.textContent=c.rotateZ+'°';
     tiltXValue.textContent=c.tiltX+'°';
     tiltYValue.textContent=c.tiltY+'°';
-    hint.textContent='Drag the screen directly. Rotate changes spin; Tilt X/Y changes its 3D direction.';
+    angleSlider.disabled=!!c.isRobot;
+    tiltXSlider.disabled=!!c.isRobot;
+    tiltYSlider.disabled=!!c.isRobot;
+    hint.textContent=c.isRobot?'Drag the robot anywhere in the scene.':'Drag the screen directly. Pitch tilts top↕bottom; Tilt Y leans left↔right; Rotate spins it.';
   }
 
   function setEditor(on){
@@ -100,7 +111,7 @@
     if(!active||drawing)return;
     if(e.target.closest?.('.layout-editor')||e.target.closest?.('.layout-output'))return;
 
-    const screen=e.target.closest?.('.floating-screen');
+    const screen=e.target.closest?.('.floating-screen') || e.target.closest?.('.robot');
     if(!screen)return;
 
     const key=screenKeyFromElement(screen);
@@ -153,6 +164,38 @@
 
   /* stop the robot cursor tracker from fighting the editor */
   scene.addEventListener('mousemove',e=>{if(active)e.stopPropagation()},true);
+
+  if(editorBox&&editorDragHandle){
+    editorDragHandle.addEventListener('pointerdown',e=>{
+      e.preventDefault();e.stopPropagation();
+      const rect=editorBox.getBoundingClientRect();
+      editorDrag={pointerId:e.pointerId,sx:e.clientX,sy:e.clientY,left:rect.left,top:rect.top};
+      editorBox.style.position='fixed';
+      editorBox.style.right='auto';
+      editorBox.style.bottom='auto';
+      editorBox.style.left=rect.left+'px';
+      editorBox.style.top=rect.top+'px';
+      editorBox.setPointerCapture?.(e.pointerId);
+      scene.classList.add('editor-moving');
+    });
+    editorBox.addEventListener('pointermove',e=>{
+      if(!editorDrag||e.pointerId!==editorDrag.pointerId)return;
+      e.preventDefault();e.stopPropagation();
+      const nx=editorDrag.left+(e.clientX-editorDrag.sx);
+      const ny=editorDrag.top+(e.clientY-editorDrag.sy);
+      editorBox.style.left=nx+'px';
+      editorBox.style.top=ny+'px';
+    });
+    const stopEditorDrag=e=>{
+      if(!editorDrag)return;
+      if(e?.pointerId!=null&&e.pointerId!==editorDrag.pointerId)return;
+      try{editorBox.releasePointerCapture?.(editorDrag.pointerId)}catch{}
+      editorDrag=null;
+      scene.classList.remove('editor-moving');
+    };
+    editorBox.addEventListener('pointerup',stopEditorDrag);
+    editorBox.addEventListener('pointercancel',stopEditorDrag);
+  }
 
   angleSlider.addEventListener('input',()=>{
     const c=configs[selected];
