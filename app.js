@@ -84,6 +84,7 @@
   function setEditor(on){
     active=on;
     scene.classList.toggle('layout-editing',on);
+    editorBox?.classList.toggle('editor-open',on);
     toggle.textContent=on?'Close Layout Editor':'Edit Hero Layout';
     if(on){
       Object.values(configs).forEach(c=>{
