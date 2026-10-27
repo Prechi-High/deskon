@@ -689,3 +689,18 @@
   font-size:10px;
   cursor:pointer;
 }
+
+/* Keep layout editor outside the 3D scene and always visible */
+.layout-editor{
+  position:fixed !important;
+  right:16px !important;
+  bottom:16px !important;
+  left:auto;
+  top:auto;
+  z-index:999999 !important;
+  max-width:min(260px,calc(100vw - 16px));
+}
+.layout-editor .editor-panel{
+  max-height:calc(100vh - 90px);
+  overflow:auto;
+}
