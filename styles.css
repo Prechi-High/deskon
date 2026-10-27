@@ -708,3 +708,43 @@
 /* Editor visibility must follow the editor itself now that it is portaled to body */
 .layout-editor.editor-open .editor-panel{display:block!important}
 .layout-editor:not(.editor-open) .editor-panel{display:none!important}
+
+
+/* Locked hero layout from approved editor values */
+@media (min-width:1001px){
+  .scene{width:680px;height:670px}
+
+  .code-screen{
+    left:-55px !important;
+    top:206px !important;
+    right:auto !important;
+    transform:perspective(1100px) rotateX(-9.5deg) rotateY(25.5deg) rotateZ(-1.5deg) !important;
+  }
+
+  .browser-screen{
+    left:267px !important;
+    top:170px !important;
+    right:auto !important;
+    transform:perspective(1100px) rotateX(-2deg) rotateY(-23.5deg) rotateZ(-2.5deg) !important;
+  }
+
+  .analytics-screen{
+    left:355px !important;
+    top:373px !important;
+    right:auto !important;
+    transform:perspective(1000px) rotateX(5.5deg) rotateY(-21deg) rotateZ(-9.5deg) !important;
+  }
+
+  .phone-screen{
+    left:604px !important;
+    top:333px !important;
+    right:auto !important;
+    transform:perspective(900px) rotateX(-4.5deg) rotateY(0deg) rotateZ(-10.5deg) !important;
+  }
+
+  .robot{
+    left:4px !important;
+    top:221px !important;
+    transform:none !important;
+  }
+}
