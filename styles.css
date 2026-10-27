@@ -615,3 +615,33 @@
   padding:10px;
   font:11px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;
 }
+
+
+/* Hero editor drag/tilt reliability fixes */
+.layout-editing .floating-screen{
+  pointer-events:auto!important;
+  touch-action:none!important;
+  user-select:none!important;
+  -webkit-user-select:none!important;
+  cursor:grab!important;
+}
+.layout-editing .floating-screen:active{cursor:grabbing!important}
+.layout-editing .floating-screen *{
+  pointer-events:none!important;
+  user-select:none!important;
+  -webkit-user-select:none!important;
+}
+.layout-editing .editor-panel,
+.layout-editing .editor-panel *{
+  pointer-events:auto!important;
+}
+.layout-editing .power-network{
+  pointer-events:none!important;
+}
+.layout-editing.drawing-line .power-network{
+  pointer-events:auto!important;
+}
+.editor-panel{
+  max-height:78vh;
+  overflow:auto;
+}
