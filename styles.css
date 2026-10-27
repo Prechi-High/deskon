@@ -389,3 +389,47 @@
 @media(max-width:1000px){
   .power-network{transform:scale(.94);transform-origin:center top}
 }
+
+
+/* Orbital web-link structure matching reference */
+.power-network{
+  z-index:1;
+}
+.orbit-line{
+  fill:none;
+  stroke:url(#powerStroke);
+  stroke-width:1.9;
+  stroke-linecap:round;
+  opacity:.5;
+  filter:url(#powerGlow);
+}
+.orbit-line.strong{
+  stroke-width:2.3;
+  opacity:.72;
+}
+.orbit-line.faint{
+  stroke-width:1.5;
+  opacity:.32;
+  stroke-dasharray:6 10;
+}
+.power-particles circle{
+  fill:#62f8ff;
+  filter:url(#powerGlow);
+}
+.orbit-node{
+  fill:#1c8cff;
+  stroke:#5df8ff;
+  stroke-width:1.2;
+  filter:url(#powerGlow);
+  animation:orbitNodePulse 2.2s ease-in-out infinite;
+}
+.orbit-node.n2,.orbit-node.n5{animation-delay:.4s}
+.orbit-node.n3,.orbit-node.n6{animation-delay:.8s}
+@keyframes orbitNodePulse{
+  0%,100%{opacity:.65}
+  50%{opacity:1}
+}
+
+/* remove previous hub/star-network visual behavior */
+.power-hub,.terminal-dot{display:none!important}
+.power-line{display:none!important}
