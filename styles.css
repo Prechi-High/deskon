@@ -269,3 +269,123 @@
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
 }
 .phone-live.phone-image i{display:none!important}
+
+
+/* Reference-matched hero composition + live power network */
+.scene{
+  height:670px;
+  position:relative;
+  perspective:1200px;
+  overflow:visible;
+}
+.power-network{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+  overflow:visible;
+}
+.power-line{
+  fill:none;
+  stroke:url(#powerStroke);
+  stroke-width:2.1;
+  stroke-linecap:round;
+  stroke-dasharray:8 11;
+  opacity:.58;
+  filter:url(#powerGlow);
+  animation:powerDash 2.4s linear infinite;
+}
+.power-line.main{
+  stroke-width:2.6;
+  opacity:.82;
+}
+@keyframes powerDash{to{stroke-dashoffset:-76}}
+.power-particles circle{
+  fill:#67fbff;
+  filter:url(#powerGlow);
+}
+.power-hub.halo{
+  fill:#0c8dff22;
+  stroke:#22eaff;
+  stroke-width:1.5;
+  filter:url(#powerGlow);
+  animation:hubPulse 1.8s ease-in-out infinite;
+}
+.power-hub.core,.terminal-dot{
+  fill:#67fbff;
+  filter:url(#powerGlow);
+}
+@keyframes hubPulse{
+  0%,100%{transform:scale(.82);transform-origin:350px 505px;opacity:.6}
+  50%{transform:scale(1.18);transform-origin:350px 505px;opacity:1}
+}
+
+/* Match the reference spacing around the robot */
+.code-screen{
+  left:-72px !important;
+  top:118px !important;
+  width:390px !important;
+  height:300px !important;
+  z-index:3 !important;
+  transform:rotate(-5deg) perspective(1100px) rotateY(7deg) !important;
+}
+.browser-screen{
+  right:48px !important;
+  top:28px !important;
+  width:348px !important;
+  height:260px !important;
+  z-index:2 !important;
+  transform:rotate(-7deg) perspective(1100px) rotateY(-6deg) !important;
+}
+.analytics-screen{
+  right:24px !important;
+  top:294px !important;
+  width:294px !important;
+  height:228px !important;
+  z-index:2 !important;
+  transform:rotate(4deg) perspective(1000px) rotateY(-5deg) !important;
+}
+.phone-screen{
+  right:-42px !important;
+  top:208px !important;
+  width:116px !important;
+  height:244px !important;
+  z-index:4 !important;
+  transform:rotate(7deg) !important;
+}
+.robot{
+  left:49% !important;
+  top:55% !important;
+  width:510px !important;
+  height:510px !important;
+  transform:translate(-43%,-26%) !important;
+  z-index:6 !important;
+}
+
+/* slight live float so the setup feels suspended, not static */
+.code-screen{animation:floatCode 6s ease-in-out infinite}
+.browser-screen{animation:floatBrowser 7s ease-in-out infinite .3s}
+.analytics-screen{animation:floatAnalytics 6.6s ease-in-out infinite .6s}
+.phone-screen{animation:floatPhone 5.8s ease-in-out infinite .9s}
+@keyframes floatCode{
+  0%,100%{translate:0 0}
+  50%{translate:0 -6px}
+}
+@keyframes floatBrowser{
+  0%,100%{translate:0 0}
+  50%{translate:4px -5px}
+}
+@keyframes floatAnalytics{
+  0%,100%{translate:0 0}
+  50%{translate:-3px 5px}
+}
+@keyframes floatPhone{
+  0%,100%{translate:0 0}
+  50%{translate:2px -7px}
+}
+
+@media(max-width:1000px){
+  .power-network{transform:scale(.94);transform-origin:center top}
+}
