@@ -159,3 +159,19 @@
   transform:translate(-43%,-28%);
   z-index:6;
 }
+
+/* Web-development build GIF embedded into browser/result screen */
+.browser-live{
+  left:60px;
+  top:74px;
+  width:234px;
+  height:132px;
+  border-radius:8px;
+  overflow:hidden;
+  background-image:var(--web-build-gif);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  box-shadow:inset 0 0 0 1px rgba(55,186,255,.20);
+}
+.browser-live > *{display:none!important}
