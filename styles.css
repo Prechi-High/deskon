@@ -433,3 +433,62 @@
 /* remove previous hub/star-network visual behavior */
 .power-hub,.terminal-dot{display:none!important}
 .power-line{display:none!important}
+
+
+/* Geometry recalculated from 1280x853 reference image.
+   Anchor: robot head center. Screen centers/offsets are matched proportionally. */
+@media (min-width:1001px){
+  .scene{
+    width:680px;
+    height:670px;
+  }
+
+  /* Reference center ≈ (363,346), relative to robot head ≈ (-352,-84) */
+  .code-screen{
+    left:-22px !important;
+    top:148px !important;
+    width:390px !important;
+    height:300px !important;
+    transform:rotate(-5deg) perspective(1100px) rotateY(7deg) !important;
+  }
+
+  /* Reference center ≈ (932,190), relative to robot head ≈ (+217,-240) */
+  .browser-screen{
+    left:351px !important;
+    right:auto !important;
+    top:71px !important;
+    width:348px !important;
+    height:260px !important;
+    transform:rotate(-7deg) perspective(1100px) rotateY(-6deg) !important;
+  }
+
+  /* Reference center ≈ (998,459), relative to robot head ≈ (+283,+29) */
+  .analytics-screen{
+    left:418px !important;
+    right:auto !important;
+    top:254px !important;
+    width:294px !important;
+    height:228px !important;
+    transform:rotate(4deg) perspective(1000px) rotateY(-5deg) !important;
+  }
+
+  /* Reference center ≈ (1179,374), relative to robot head ≈ (+464,-56) */
+  .phone-screen{
+    left:620px !important;
+    right:auto !important;
+    top:193px !important;
+    width:116px !important;
+    height:244px !important;
+    transform:rotate(7deg) !important;
+  }
+
+  /* Robot/laptop visual anchor aligned to the center-lower region of the reference. */
+  .robot{
+    left:185px !important;
+    top:228px !important;
+    width:510px !important;
+    height:510px !important;
+    transform:none !important;
+    z-index:6 !important;
+  }
+}
