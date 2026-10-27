@@ -704,3 +704,7 @@
   max-height:calc(100vh - 90px);
   overflow:auto;
 }
+
+/* Editor visibility must follow the editor itself now that it is portaled to body */
+.layout-editor.editor-open .editor-panel{display:block!important}
+.layout-editor:not(.editor-open) .editor-panel{display:none!important}
