@@ -182,3 +182,71 @@
   box-shadow:inset 0 0 0 1px rgba(55,186,255,.18);
 }
 .browser-live.web-gif > *{display:none!important}
+
+/* UI/UX Figma editing preview */
+.browser-live.uiux-figma{
+  left:63px;
+  top:62px;
+  width:209px;
+  height:139px;
+  border-radius:8px;
+  overflow:hidden;
+  background-image:var(--uiux-figma-image);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transform-origin:top left;
+  transform:skewY(1.2deg) scaleY(.985);
+  clip-path:polygon(0 0,100% 8%,100% 92%,0 100%);
+  box-shadow:inset 0 0 0 1px rgba(55,186,255,.18);
+}
+.browser-live.uiux-figma .figma-edit-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.browser-live.uiux-figma .figma-box{
+  position:absolute;
+  border:1px solid #39d8ff;
+  box-shadow:0 0 8px rgba(57,216,255,.55);
+  background:rgba(38,133,255,.035);
+}
+.browser-live.uiux-figma .figma-box::before,
+.browser-live.uiux-figma .figma-box::after{
+  content:"";
+  position:absolute;
+  width:4px;height:4px;
+  background:#fff;
+  border:1px solid #39d8ff;
+  box-shadow:0 0 5px #39d8ff;
+}
+.browser-live.uiux-figma .figma-box::before{left:-3px;top:-3px}
+.browser-live.uiux-figma .figma-box::after{right:-3px;bottom:-3px}
+.browser-live.uiux-figma .figma-box.b1{
+  left:24%;top:23%;width:54%;height:22%;
+  animation:figmaMoveA 4s ease-in-out infinite;
+}
+.browser-live.uiux-figma .figma-box.b2{
+  left:27%;top:49%;width:46%;height:18%;
+  animation:figmaMoveB 4s ease-in-out .35s infinite;
+}
+.browser-live.uiux-figma .figma-box.b3{
+  left:26%;top:70%;width:50%;height:14%;
+  animation:figmaMoveC 4s ease-in-out .7s infinite;
+}
+@keyframes figmaMoveA{
+  0%,18%{transform:translate(0,0);opacity:.35}
+  30%,48%{transform:translate(4px,2px);opacity:1}
+  60%,100%{transform:translate(0,0);opacity:.4}
+}
+@keyframes figmaMoveB{
+  0%,20%{transform:translate(0,0);opacity:.25}
+  38%,58%{transform:translate(-3px,3px);opacity:1}
+  72%,100%{transform:translate(0,0);opacity:.35}
+}
+@keyframes figmaMoveC{
+  0%,28%{transform:translate(0,0);opacity:.2}
+  45%,68%{transform:translate(3px,-2px);opacity:1}
+  82%,100%{transform:translate(0,0);opacity:.35}
+}
+.browser-live.uiux-figma > .live-site{display:none!important}
