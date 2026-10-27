@@ -645,3 +645,31 @@
   max-height:78vh;
   overflow:auto;
 }
+
+.editor-drag-handle{
+  margin:-4px -4px 10px;
+  padding:7px 9px;
+  border-radius:8px;
+  background:#0b2748;
+  border:1px solid #2b6d96;
+  color:#7feaff;
+  font-size:11px;
+  font-weight:700;
+  cursor:move;
+  user-select:none;
+}
+.layout-editing .robot{
+  pointer-events:auto!important;
+  cursor:grab!important;
+  outline:1px dashed transparent;
+}
+.layout-editing .robot.editor-selected{
+  outline:2px dashed #42efff;
+  outline-offset:4px;
+}
+.layout-editing .robot *{
+  pointer-events:none!important;
+}
+.layout-editing.editor-moving .editor-panel{
+  cursor:move;
+}
