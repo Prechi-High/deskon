@@ -28,10 +28,10 @@
   if(!scene||!toggle||!network)return;
 
   const configs={
-    code:{el:scene.querySelector('.code-screen'),rotateZ:-5,tiltX:0,tiltY:7,perspective:1100},
-    browser:{el:scene.querySelector('.browser-screen'),rotateZ:-7,tiltX:0,tiltY:-6,perspective:1100},
-    analytics:{el:scene.querySelector('.analytics-screen'),rotateZ:4,tiltX:0,tiltY:-5,perspective:1000},
-    phone:{el:scene.querySelector('.phone-screen'),rotateZ:7,tiltX:0,tiltY:0,perspective:900},
+    code:{el:scene.querySelector('.code-screen'),rotateZ:-1.5,tiltX:-9.5,tiltY:25.5,perspective:1100},
+    browser:{el:scene.querySelector('.browser-screen'),rotateZ:-2.5,tiltX:-2,tiltY:-23.5,perspective:1100},
+    analytics:{el:scene.querySelector('.analytics-screen'),rotateZ:-9.5,tiltX:5.5,tiltY:-21,perspective:1000},
+    phone:{el:scene.querySelector('.phone-screen'),rotateZ:-10.5,tiltX:-4.5,tiltY:0,perspective:900},
     robot:{el:scene.querySelector('.robot'),rotateZ:0,tiltX:0,tiltY:0,perspective:1200,isRobot:true}
   };
 
@@ -260,13 +260,11 @@
       dot.setAttribute('cx',p.x);dot.setAttribute('cy',p.y);dot.setAttribute('r','5');
       network.appendChild(dot);
     });
-    if(drawPoints.length>1){
+    if(drawPoints.length===2){
       const path=document.createElementNS('http://www.w3.org/2000/svg','path');
       path.setAttribute('class','editor-temp-line');
-      let d=`M${drawPoints[0].x.toFixed(1)} ${drawPoints[0].y.toFixed(1)}`;
-      if(drawPoints.length===2)d+=` L${drawPoints[1].x.toFixed(1)} ${drawPoints[1].y.toFixed(1)}`;
-      if(drawPoints.length===3)d+=` Q${drawPoints[1].x.toFixed(1)} ${drawPoints[1].y.toFixed(1)} ${drawPoints[2].x.toFixed(1)} ${drawPoints[2].y.toFixed(1)}`;
-      path.setAttribute('d',d);
+      const a=drawPoints[0],b=drawPoints[1];
+      path.setAttribute('d',`M${a.x.toFixed(1)} ${a.y.toFixed(1)} L${b.x.toFixed(1)} ${b.y.toFixed(1)}`);
       network.appendChild(path);
     }
   }
@@ -280,8 +278,8 @@
       network.querySelectorAll('.orbit-line:not(.editor-line)').forEach(p=>p.style.display='none');
       originalsHidden=true;
     }
-    drawBtn.textContent='Drawing… click 4 points';
-    hint.textContent='Click: start → curve 1 → curve 2 → end.';
+    drawBtn.textContent='Drawing… click 2 ends';
+    hint.textContent='Click one end, then click the other end.';
     refreshTemp();
   }
   function stopDrawing(restoreHint=true){
@@ -313,7 +311,7 @@
       network.insertBefore(p,network.querySelector('.power-particles'));
       customLines.push(p);
       drawPoints=[];refreshTemp();
-      hint.textContent='Curve added. Add another 4-point curve or stop drawing.';
+      hint.textContent='Curve added. Add another 2-point connection or stop drawing.';
     }
   },true);
 
@@ -387,7 +385,8 @@
   });
   closeOutput.addEventListener('click',()=>output.classList.remove('open'));
 
-  const saved=localStorage.getItem('deskonHeroLayoutDraft');
+  localStorage.removeItem('deskonHeroLayoutDraft');
+  const saved=null;
   if(saved){
     try{
       const data=JSON.parse(saved);
