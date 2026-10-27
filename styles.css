@@ -45,15 +45,44 @@
   transform:rotate(7deg);
 }
 .code-live{
-  position:absolute;left:102px;top:73px;width:214px;height:145px;overflow:hidden;
-  transform:rotate(.2deg);padding:2px 8px 8px;
+  position:absolute;
+  left:92px;
+  top:101px;
+  width:252px;
+  height:181px;
+  overflow:hidden;
+  padding:10px 12px 12px 14px;
+  transform-origin:top left;
+  transform:rotate(9.2deg) skewX(-0.8deg) scaleY(.985);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
 }
-.code-live small{display:block;color:#5cecff;font-size:7px;letter-spacing:1.2px;margin-bottom:6px}
+.code-live small{
+  display:block;
+  color:#5cecff;
+  font-size:6.8px;
+  letter-spacing:1.15px;
+  margin-bottom:7px;
+  transform:skewX(.4deg);
+}
 .code-live pre{
-  margin:0;color:#d8efff;font:600 7.4px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;
-  white-space:pre-wrap;text-shadow:0 0 5px rgba(41,218,255,.34)
+  margin:0;
+  color:#d8efff;
+  font:600 7.1px/1.58 ui-monospace,SFMono-Regular,Menlo,monospace;
+  white-space:pre-wrap;
+  text-shadow:0 0 5px rgba(41,218,255,.34);
+  transform:skewX(.3deg);
+  transform-origin:top left;
 }
-.code-live .code-caret{position:absolute;left:8px;top:22px;width:1.5px;height:10px;background:#40efff;box-shadow:0 0 7px #40efff;animation:codeBlink .75s steps(1) infinite}
+.code-live .code-caret{
+  position:absolute;
+  left:14px;
+  top:34px;
+  width:1.5px;
+  height:10px;
+  background:#40efff;
+  box-shadow:0 0 7px #40efff;
+  animation:codeBlink .75s steps(1) infinite;
+}
 @keyframes codeBlink{50%{opacity:0}}
 .browser-live{
   position:absolute;left:59px;top:71px;width:236px;height:137px;overflow:hidden;border-radius:4px;
