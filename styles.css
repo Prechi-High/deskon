@@ -88,3 +88,45 @@
 @media(max-width:1000px){
   .code-screen{left:2%;top:120px}.browser-screen{right:4%;top:55px}.analytics-screen{right:4%;top:300px}.phone-screen{right:-1%;top:230px}
 }
+
+/* Final screen composition matched to reference */
+.code-screen{
+  left:-54px;
+  top:128px;
+  width:372px;
+  height:286px;
+  z-index:3;
+  transform:rotate(-5deg) perspective(1100px) rotateY(7deg);
+}
+.browser-screen{
+  right:54px;
+  top:34px;
+  width:326px;
+  height:246px;
+  z-index:2;
+  transform:rotate(-7deg) perspective(1100px) rotateY(-6deg);
+}
+.analytics-screen{
+  right:38px;
+  top:286px;
+  width:286px;
+  height:222px;
+  z-index:2;
+  transform:rotate(4deg) perspective(1000px) rotateY(-5deg);
+}
+.phone-screen{
+  right:-34px;
+  top:194px;
+  width:108px;
+  height:236px;
+  z-index:4;
+  transform:rotate(7deg);
+}
+.robot{
+  left:49%;
+  top:54%;
+  width:500px;
+  height:500px;
+  transform:translate(-43%,-28%);
+  z-index:6;
+}
