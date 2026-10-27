@@ -7,6 +7,7 @@
   const targetSelect=document.getElementById('editorTarget');
   const editorBox=document.getElementById('layoutEditor');
   const editorDragHandle=document.getElementById('editorDragHandle');
+  const resetEditorPos=document.getElementById('resetEditorPos');
   const angleSlider=document.getElementById('angleSlider');
   const tiltXSlider=document.getElementById('tiltXSlider');
   const tiltYSlider=document.getElementById('tiltYSlider');
@@ -181,8 +182,14 @@
     editorBox.addEventListener('pointermove',e=>{
       if(!editorDrag||e.pointerId!==editorDrag.pointerId)return;
       e.preventDefault();e.stopPropagation();
-      const nx=editorDrag.left+(e.clientX-editorDrag.sx);
-      const ny=editorDrag.top+(e.clientY-editorDrag.sy);
+      const rawX=editorDrag.left+(e.clientX-editorDrag.sx);
+      const rawY=editorDrag.top+(e.clientY-editorDrag.sy);
+      const rect=editorBox.getBoundingClientRect();
+      const margin=8;
+      const maxX=Math.max(margin,window.innerWidth-rect.width-margin);
+      const maxY=Math.max(margin,window.innerHeight-rect.height-margin);
+      const nx=Math.min(Math.max(rawX,margin),maxX);
+      const ny=Math.min(Math.max(rawY,margin),maxY);
       editorBox.style.left=nx+'px';
       editorBox.style.top=ny+'px';
     });
@@ -195,6 +202,25 @@
     };
     editorBox.addEventListener('pointerup',stopEditorDrag);
     editorBox.addEventListener('pointercancel',stopEditorDrag);
+
+    window.addEventListener('resize',()=>{
+      const r=editorBox.getBoundingClientRect();
+      const margin=8;
+      const maxX=Math.max(margin,window.innerWidth-r.width-margin);
+      const maxY=Math.max(margin,window.innerHeight-r.height-margin);
+      editorBox.style.left=Math.min(Math.max(r.left,margin),maxX)+'px';
+      editorBox.style.top=Math.min(Math.max(r.top,margin),maxY)+'px';
+    });
+
+    resetEditorPos?.addEventListener('click',e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      editorBox.style.position='absolute';
+      editorBox.style.left='auto';
+      editorBox.style.top='auto';
+      editorBox.style.right='10px';
+      editorBox.style.bottom='10px';
+    });
   }
 
   angleSlider.addEventListener('input',()=>{
